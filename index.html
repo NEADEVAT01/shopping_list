@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список покупок</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script defer src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+<div id="List">
+    <div v-bind:class="{named: isNamed}">
+        <input placeholder="Имя" v-model='newName'>
+        <button v-on:click="inputName">Введите имя</button>
+    </div>
+
+    <p>Привет, {{Name}}</p><br>
+
+    <input v-model='newItem' placeholder="Название товара">
+    <button v-on:click="inputItem">Ввод</button>
+    <br><br>
+
+    <ul>
+        <li v-for="(item, index) in items" :class="{line: item.purchased}">
+            <span v-on:click="crossItem(item)">{{ item.name }}</span>
+            <button v-on:click="items.splice(index,1)">X</button>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
